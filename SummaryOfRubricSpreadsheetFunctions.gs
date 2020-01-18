@@ -55,6 +55,24 @@ function getFeedbackFromSheet(idx, questionRowStart, questionRowEnd, questionCol
   }
 }
 
+function getLabGradeFromStudentName(labSheetNum, nameCellValue, nameCol, markCol) {
+  if (!labSheetNum)
+    throw "Invalid parameter (it should be a number from 0 to "+sheets.length+")";
+  else {
+    var sheets = SpreadsheetApp.getActiveSpreadsheet().getSheets();
+    var idx = parseInt(labSheetNum);
+    if (isNaN(idx) || idx < 1 || sheets.length < idx)
+      throw "Invalid parameter (it should be a number from 0 to "+sheets.length+")";
+    var values = sheets[idx-1].getDataRange().getValues();
+    for (var row in values) {
+      if(values[row][nameCol] == nameCellValue) {
+        return values[row][markCol];
+      }
+    }
+      return "";
+  }
+}
+
 //TODO: Update cells that use these functions asynchronously
 //https://developers.google.com/web/fundamentals/primers/async-functions
 //Potentially just an observer?
