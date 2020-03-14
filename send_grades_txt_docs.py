@@ -86,7 +86,10 @@ def getGoogleSheetData(student, googleSheetId, googleSheetTab):
                 return {'mark': row[1], 'feedback': row[2]}
 
 def createTxtDocument(tab, mark, weight, text, recipient):
-    dir = os.path.join(os.getcwd(),tab)
+    dir = os.path.join(os.getcwd(),'feedback')
+    if not os.path.exists(dir):
+        os.mkdir(dir)
+    dir = os.path.join(dir,tab)
     if not os.path.exists(dir):
         os.mkdir(dir)
     f = open(os.path.join(dir,recipient + ".txt"),"w+")
