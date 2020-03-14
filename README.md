@@ -1,5 +1,5 @@
 # Mark-Emailer-Script
-A set of scripts to facilitate emailing marks out for TA responsibilities, by creating emails in outlook with bodies populated from Google Sheets.
+A set of scripts to facilitate emailing marks out for TA responsibilities, by creating emails in outlook with bodies populated from Google Sheets, or by creating txt files with HTML <br> tags to copy/paste into Nexus.
 
 ## Requirements
 - Python 3.7
@@ -78,13 +78,15 @@ To use these functions in a google sheet, open your desired sheet and follow **T
 
 Once you have a sheet populated you can run this script.  The script's workflow is:
 
-- Prompt for preview before sending: 
+- elect a mode to execute this script:
+  - currently supports sending grades via email, or creating txt files to copy/paste into nexus
+- (Email only) Prompt for preview before sending: 
   - Yes will wait for you to send the email before creating the next one.
   - No will create them all at once.
 - Choose a spreadsheet:
   - These are the keys from the google_sheet_ids.csv.  It is a good idea to have your classlist CSVs to be named the same as the keys here so it's obvious which is which
 - Enter a spreadsheet tab name:
-  - This is where data is pulled from.  Likely a summary sheet, so it's a good idea to name that sheet after the assignment as this will be used in the email body to say that a mark for "Assignment x" is ..., etc.
+  - This is where data is pulled from.  Likely a summary sheet, so it's a good idea to name that sheet after the assignment as this will be used in the email body to say that a mark for "Assignment x" is ..., etc (Email only).
 - Enter weight (default is /10)
   - Weight of the assignement/lab/project.
   - Entering nothing will default the value to 10, as expected.
