@@ -93,7 +93,6 @@ def createTxtDocument(tab, mark, weight, text, recipient):
     if not os.path.exists(dir):
         os.mkdir(dir)
     f = open(os.path.join(dir,recipient + ".txt"),"w+")
-    f.write("Mark is " + mark + "/" + weight + "<br>\n")
     f.write(text)
     f.close()
 
