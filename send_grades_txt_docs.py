@@ -8,7 +8,7 @@ import csv
 import win32com.client as win32
 import time
 
-STUDENTS = {}
+STUDENTS = []
 SPREADSHEETS = {}
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 
@@ -29,7 +29,7 @@ def populateListFromCSV(csvFileName, listName):
         for row in csv_reader:
             #ignore header line of csv
             if line_count != 0:
-                listName = row[0]
+                listName.append(row[0])
             line_count += 1
 
 def createStudentList(classSheet):
@@ -89,7 +89,8 @@ def createTxtDocument(tab, mark, weight, text, recipient):
     dir = os.path.join(os.getcwd(),tab)
     if not os.path.exists(dir):
         os.mkdir(dir)
-    f = open(recipient + "-" + tab + ".txt","w+")
+    f = open(os.path.join(dir,recipient + ".txt"),"w+")
+    f.write("Mark is " + mark + "/" + weight + "<br>\n")
     f.write(text)
     f.close()
 
@@ -106,10 +107,12 @@ def main():
     weight = input()
     if weight == "":
         weight = "10"
+    counter = 0
     for student in STUDENTS:
         print(student)
         data = getGoogleSheetData(student, SPREADSHEETS[classSheet], googleSheetTab)
         if data != None:
-            createTxtDocument(googleSheetTab, data['mark'], weight, data['feedback'], student)
+            createTxtDocument(googleSheetTab, data['mark'], weight, data['feedback'], str(counter) + "-" + student)
+            counter += 1
 
 main()

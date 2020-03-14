@@ -73,7 +73,10 @@ function getFullRubricFromSheet(idx, questionRowStart, questionRowEnd, questionC
     var values = range.getValues();
     
     for (var row in values) {
-        feedbackString += values[row][questionColStart-1] + ": " + values[row][questionColEnd-1] + "<br>\n";
+		for(var i = questionColStart-1; i < questionColEnd-1; i++) {
+			feedbackString += values[row][i] + " "
+		}
+		feedbackString +="<br>\n"
 		if(values[row][questionColStart-1].indexOf('-') != -1) feedbackString += "<br>\n";
     }
     //Probably a less gross way of doing this, but I can't be bothered for something of this scale

@@ -12,10 +12,10 @@ while (not validInput):
     if mode == "q":
         exit()
     elif mode == "eml":
-        execfile('send_grades_email.py')
+        exec(open('send_grades_email.py').read())
         validInput = True
     elif mode == "txt":
-        execfile('send_grades_txt_docs.py')
+        exec(open('send_grades_txt_docs.py').read())
         validInput = True
     else :
         print("Please enter valid input")
