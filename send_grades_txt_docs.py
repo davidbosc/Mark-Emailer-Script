@@ -109,7 +109,7 @@ def main():
     weight = input()
     if weight == "":
         weight = "10"
-    counter = 0
+    counter = 1
     for student in STUDENTS:
         print(student)
         data = getGoogleSheetData(student, SPREADSHEETS[classSheet], googleSheetTab)
